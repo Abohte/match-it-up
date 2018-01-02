@@ -10,7 +10,18 @@ RSpec.describe Pair, type: :model do
   end
 
   describe "association with matches" do
-    it "has many matches"
-    it "deletes associated matches"
+    let(:pair) { create :pair }
+    let!(:match) { create :match, pair_id: pair.id}
+
+    it "has many matches" do
+      match1 = pair.matches.new
+      match2 = pair.matches.new
+      expect(pair.matches).to include(match1)
+      expect(pair.matches).to include(match2)
+    end
+
+    it "deletes associated matches" do
+      expect { pair.destroy }.to change(Match, :count).by(-1)
+    end
   end
 end
