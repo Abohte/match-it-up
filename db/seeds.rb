@@ -11,6 +11,6 @@ Pair.destroy_all
 Match.destroy_all
 User.destroy_all
 
-user1 = User.create!(email: "test@test.com", password: "123456", first_name: "Henk", last_name: "de Hond")
+user1 = User.create!(email: "test@test.com", password: "123456", first_name: "Henk", last_name: "de Hond", admin: true)
 
 user2 = FactoryBot.create :user
