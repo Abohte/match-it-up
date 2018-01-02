@@ -1,5 +1,7 @@
+require 'date'
+
 FactoryBot.define do
   factory :pair do
-    date "2018-01-02"
+    date { Date.today }
   end
 end
