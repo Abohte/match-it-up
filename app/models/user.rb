@@ -4,6 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :matches, dependent: :destroy 
+  has_many :matches, dependent: :destroy
   has_many :pairs, through: :matches
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
