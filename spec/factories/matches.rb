@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :match do
-    user nil
-    pair nil
+    user { create :user }
+    pair { create :pair }
   end
 end
