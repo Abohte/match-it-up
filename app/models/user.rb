@@ -48,10 +48,11 @@ public
   end
 
   def self.create_next_group_order(current_group_order)
-    [current_group_order[0]] + current_group_order[1..-1].rotate(-1)
+    @group = [current_group_order[0]] + current_group_order[1..-1].rotate(-1)
   end
 
   def self.generate_pairs(group)
+    
     current_group_order = group.dup
     while current_group_order.length != 0 do
       if (current_group_order.length % 2 != 0)
@@ -68,7 +69,8 @@ public
     end
   end
 
-  def group_changed?
-
+  def self.group_changed?(group)
+    new_group = User.set_group
+    new_group.sort != group.sort
   end
 end
