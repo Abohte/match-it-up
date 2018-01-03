@@ -16,6 +16,7 @@ class User < ApplicationRecord
   end
 
   private
+  
   def set_default_admin_value
     self.admin ||= false
   end
