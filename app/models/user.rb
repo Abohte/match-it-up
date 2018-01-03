@@ -19,7 +19,12 @@ class User < ApplicationRecord
     _valid_pairs
   end
 
+  def self.all_names
+    self.all.map{|user| user.full_name}
+  end
+
   private
+
 
   def _valid_pairs
     if self.admin
