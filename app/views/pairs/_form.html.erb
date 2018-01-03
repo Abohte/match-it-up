@@ -1,0 +1,19 @@
+
+<%= form_for :pair do |f| %>
+  <%= render 'shared/validation_errors' %>
+  <div class="form-group">
+    <%= f.date_select :date, class: "form-control"%>
+  </div>
+
+  <% fields_for :matches, pair.matches do |match_f| %>
+    <div class="form-group">
+      <!-- <%#= match_f.select :user, User.all.collect {|u| [ u.full_name, u.id ] }, class: "form-control"%> -->
+      <%= match_f.select :user, User.all, prompt: "Select user", class: "form-control"%>
+    </div>
+
+  <% end %>
+  <div class="form-group">
+    <%= f.submit "Create", class: "btn btn-primary"  %>
+    <%= link_to "BACK", root_path, class: "btn btn-default" %>
+  </div>
+<% end %>

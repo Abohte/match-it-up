@@ -25,6 +25,7 @@
               <li><%= link_to "Show Matches", user_pairs_path(current_user) %></li>
               <% if current_user.admin %>
                 <li><%= link_to "Show all users", users_path %></li>
+                <li><%= link_to "New match", new_user_pair_path(current_user) %></li>
               <% end %>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
