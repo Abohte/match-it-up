@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show]
-  before_action :may_access_index, only: [:index]
+  before_action :validate_access, only: [:index]
   before_action :set_users, only: [:index]
 
   def index
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   private
 
-  def may_access_index
+  def validate_access
     redirect_to root_path if !current_user.admin
   end
 
