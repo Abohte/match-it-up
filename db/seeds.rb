@@ -15,6 +15,11 @@ user1 = User.create!(email: "test@test.com", password: "123456", first_name: "He
 
 user2 = FactoryBot.create :user
 user3 = FactoryBot.create :user
+user4 = FactoryBot.create :user
+user5 = FactoryBot.create :user
+user6 = FactoryBot.create :user
+user7 = FactoryBot.create :user
+
 
 pair = FactoryBot.create :pair
 
