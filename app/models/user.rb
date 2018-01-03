@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   def _non_future_pairs
     if self.pairs.any?
-      self.pairs.select{|pair| !pair.future?}
+      return self.pairs.select{|pair| !pair.future?}
     end
   end
 
