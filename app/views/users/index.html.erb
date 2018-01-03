@@ -1,7 +1,9 @@
+
 <h3>Current list of users:</h3>
 <ul>
   <% @users.each do |user| %>
     <li><h3><%= user.full_name %> <%= user.admin ? "(admin)" : "" %></h3></li>
     <p><%= user.email %></p>
+    <p>id: <%= user.id %></p>
   <% end %>
 </ul>

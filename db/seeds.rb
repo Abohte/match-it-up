@@ -11,12 +11,20 @@ Pair.destroy_all
 Match.destroy_all
 User.destroy_all
 
-user1 = User.create!(email: "test@test.com", password: "123456", first_name: "Henk", last_name: "de Hond", admin: true)
+user1 = User.create!(email: "admin@test.com", password: "123456", first_name: "Henk", last_name: "de Hond", admin: true)
 
-user2 = FactoryBot.create :user
-user3 = FactoryBot.create :user
+user2 = User.create!(email: "stu1@test.com", password: "123456", first_name: "Jason", last_name: "Statham", admin: false)
+user3 = User.create!(email: "stu2@test.com", password: "123456", first_name: "Queen", last_name: "Elisabeth", admin: false)
+user4 = User.create!(email: "stu3@test.com", password: "123456", first_name: "Bono", last_name: "I_Need_A_Last_Name", admin: false)
+user5 = User.create!(email: "stu4@test.com", password: "123456", first_name: "Jackie", last_name: "Chan", admin: false)
 
-pair = FactoryBot.create :pair
+# user2 = FactoryBot.create :user
+# user3 = FactoryBot.create :user
 
-match2 = Match.create!(pair: pair, user: user2)
-match1 = Match.create!(pair: pair, user: user3)
+pair1 = FactoryBot.create :pair
+pair2 = FactoryBot.create :pair
+
+match1 = Match.create!(pair: pair1, user: user2)
+match2 = Match.create!(pair: pair1, user: user3)
+match2 = Match.create!(pair: pair2, user: user4)
+match2 = Match.create!(pair: pair2, user: user5)
