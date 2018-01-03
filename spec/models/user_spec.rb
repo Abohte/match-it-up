@@ -80,6 +80,38 @@ describe "pairing algorithm" do
     end
   end
 
+  describe "self.group_changed?" do
+    context "the group has changed" do
+      it "returns true" do
+        start_group = [1, 2, 3, 4]
+        expect(User.group_changed?(start_group)).to eq(true)
+      end
+    end
+    context "the group has not changed" do
+      it "returns false" do
+        start_group = User.set_group
+        expect(User.group_changed?(start_group)).to eq(false)
+      end
+    end
+  end
+
+  describe "self.all_pairs_made?" do
+    context "all pairs in a group have been made" do
+      it "returns true" do
+        group = User.set_group
+        count = 3
+        expect(User.all_pairs_made?(group, count)).to eq(true)
+      end
+    end
+    context "not all pairs in a group have been made" do
+      it "returns true" do
+        group = User.set_group
+        count = 2
+        expect(User.all_pairs_made?(group, count)).to eq(false)
+      end
+    end
+  end
+
   describe "self.generate_pairs" do
     context "four students, one admin" do
       it "returns four matches" do
