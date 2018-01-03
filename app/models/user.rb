@@ -44,6 +44,7 @@ class User < ApplicationRecord
 
 public
   def self.set_group
+    @count = 0
     @group = User.where(admin: false).ids.shuffle
   end
 
@@ -52,8 +53,12 @@ public
   end
 
   def self.generate_pairs(group)
-    
+    if User.group_changed?(group) || User.all_pairs_made?(group, @count)
+      group = User.set_group
+    end
     current_group_order = group.dup
+    @count += 1
+    puts @count
     while current_group_order.length != 0 do
       if (current_group_order.length % 2 != 0)
         odd_user = current_group_order.shift
@@ -67,6 +72,11 @@ public
     if !odd_user.nil?
       Match.create!(user_id: odd_user, pair: pair)
     end
+    User.create_next_group_order(group)
+  end
+
+  def self.all_pairs_made?(group, count)
+    group.length == count
   end
 
   def self.group_changed?(group)
