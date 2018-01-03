@@ -17,7 +17,6 @@ user2 = User.create!(email: "stu1@test.com", password: "123456", first_name: "Ja
 user3 = User.create!(email: "stu2@test.com", password: "123456", first_name: "Queen", last_name: "Elisabeth")
 user4 = User.create!(email: "stu3@test.com", password: "123456", first_name: "Bono", last_name: "I_Need_A_Last_Name")
 user5 = User.create!(email: "stu4@test.com", password: "123456", first_name: "Jackie", last_name: "Chan")
-
 user6 = FactoryBot.create :user, email: "stu5@test.com", password: "123456"
 user7 = FactoryBot.create :user, email: "stu6@test.com", password: "123456"
 
