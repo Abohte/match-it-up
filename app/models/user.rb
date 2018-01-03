@@ -58,7 +58,6 @@ public
     end
     current_group_order = group.dup
     @count += 1
-    puts @count
     while current_group_order.length != 0 do
       if (current_group_order.length % 2 != 0)
         odd_user = current_group_order.shift
@@ -76,7 +75,7 @@ public
   end
 
   def self.all_pairs_made?(group, count)
-    group.length == count
+    group.length-1 == count
   end
 
   def self.group_changed?(group)
