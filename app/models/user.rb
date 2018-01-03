@@ -41,7 +41,27 @@ class User < ApplicationRecord
     end
   end
 
+
+  def valid_pairs
+    _valid_pairs
+  end
+
   private
+
+  def _valid_pairs
+    if self.admin
+      return Pair.all
+    else
+      return _non_future_pairs
+    end
+  end
+
+  def _non_future_pairs
+    if self.pairs.any?
+      return self.pairs.select{|pair| !pair.future?}
+    end
+  end
+
   def set_default_admin_value
     self.admin ||= false
   end

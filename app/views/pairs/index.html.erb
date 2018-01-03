@@ -1,0 +1,14 @@
+<h4>Logged in as: <%= current_user.full_name %> <%= current_user.admin ? "(Admin)" : "(Student)" %></h4>
+<h3>These are <%= current_user.admin ? "all the" : "your" %> current matches.</h3>
+
+<% if @pairs.any? %>
+  <ul>
+  <% for pair in @pairs %>
+
+    <li>Day: <%= pair.date %> :
+      <%= pair.students.map{|student| student.full_name}.join(" <-> ") %>
+    </li>
+    <br>
+  <% end %>
+  </ul>
+<% end %>
