@@ -4,7 +4,9 @@
 <% if @pairs.any? %>
   <ul>
   <% for pair in @pairs %>
-    <li><%= pair.students.map{|student| student.full_name}.join(" <-> ") %></li>
+    <li>Day: <%= pair.date %> : 
+      <%= pair.students.map{|student| student.full_name}.join(" <-> ") %>
+    </li>
     <br>
   <% end %>
   </ul>
