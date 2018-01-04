@@ -1,6 +1,13 @@
 def generate
-  @group = set_group if @group.nil?
-  @count = 0 if @count.nil?
+
+  if PairingProgress.any?
+    @group = PairingProgress.last.current_students_order
+    @count  = PairingProgress.last.current_iteration
+  else
+    @group = set_group if @group.nil?
+    @count = 0 if @count.nil?
+  end
+
   if group_changed?(@group) || all_pairs_made?(@group, @count)
     @count = 0
     @group = set_group
@@ -21,6 +28,10 @@ def generate
     Match.create!(user_id: odd_user, pair: pair)
   end
   @group = create_next_group_order(@group)
+
+  PairingProgress.destroy_all if PairingProgress.any?
+
+  PairingProgress.create!(current_students_order: @group, current_iteration: @count)
 end
 
 def set_group
