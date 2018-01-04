@@ -9,7 +9,7 @@
   <% for pair in @pairs %>
 
     <li>Day: <%= pair.date %> :
-      <%= pair.students.map{|student| student.full_name}.join(" <-> ") %>
+      <%= pair.pretty_print %>
     </li>
     <br>
   <% end %>

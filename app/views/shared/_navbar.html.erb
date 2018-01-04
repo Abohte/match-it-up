@@ -10,6 +10,11 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to "Match It Up", root_path, class: "navbar-brand" %>
+      <div class="navbar-header navbar-text">
+      <% if user_signed_in? && !current_user.admin %>
+        <p><%= current_user.pairs.last.date %> : <%= current_user.pairs.last.pretty_print %></p>
+      <% end %>
+      </div>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
