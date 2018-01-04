@@ -9,6 +9,13 @@ class UsersController < ApplicationController
   def show
   end
 
+  # def generate_pairs
+  #
+  #   if User.generate_pairs
+  #     redirect_to user_pairs_path(current_user), notice: "New pairs generated"
+  #   end
+  # end
+
   private
 
   def validate_access
