@@ -90,18 +90,4 @@ public
     new_group = User.set_group
     new_group.sort != current_group.sort
   end
-
-  def self.puts_counter
-    puts @counter
-  end
-
-  def self.increases_counter
-    @counter += 1
-    puts @counter
-    puts_counter
-  end
-
-  def self.sets_counter
-    @counter = 0
-  end
 end
