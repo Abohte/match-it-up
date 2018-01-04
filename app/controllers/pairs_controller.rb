@@ -8,7 +8,6 @@ class PairsController < ApplicationController
   before_action :set_pairs, only: [:index, :show]
 
   def index
-
   end
 
   def new
