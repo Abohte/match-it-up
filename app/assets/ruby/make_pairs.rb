@@ -1,4 +1,7 @@
-def generate
+ERROR_MESSAGE = "Pairs are already made for this day. To make new pairs, first delete the pairs for the day in question."
+
+def generate(date = Date.today)
+  return ERROR_MESSAGE if Pair.exists?(date: date)
 
   if PairingProgress.any?
     @group = PairingProgress.last.current_students_order
@@ -20,7 +23,7 @@ def generate
     end
     user1 = current_group_order.shift
     user2 = current_group_order.pop
-    pair = Pair.create!(date: Date.today)
+    pair = Pair.create!(date: date)
     Match.create!(user_id: user1, pair: pair)
     Match.create!(user_id: user2, pair: pair)
   end
@@ -43,7 +46,11 @@ def create_next_group_order(current_group_order)
 end
 
 def all_pairs_made?(current_group, count)
-  current_group.length-1 == count
+  if current_group.length % 2 == 0
+    current_group.length-1 == count
+  else
+    current_group.length-2 == count
+  end
 end
 
 def group_changed?(current_group)
