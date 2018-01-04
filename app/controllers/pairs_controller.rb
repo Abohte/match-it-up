@@ -35,9 +35,8 @@ class PairsController < ApplicationController
   end
 
   def generate_pairs
-    # in make_pairs.rb
-    # puts date_params
     date = convert_date_params(date_params)
+    # in make_pairs.rb
     generate(date)
     redirect_to user_pairs_path(current_user), notice: "New pairs generated"
   end
@@ -46,22 +45,18 @@ class PairsController < ApplicationController
 
   end
 
-  def delete_on_date(date: Date.today)
-    return if !date.any?
+  def delete_on_date
+    date = convert_date_params(date_params)
+    pairs_to_delete = Pair.where(date: date)
 
-    pairs_to_delete = Pair.where(date: date).all
-    # if pairs_to_delete.destroy_all
-    puts pairs_to_delete
-      # redirect_to user_pairs_path(current_user), notice: "Pairs deleted for #{date}"
-    # end
+    if pairs_to_delete.any? && pairs_to_delete.destroy_all
+
+      redirect_to user_pairs_path(current_user), notice: "Pairs deleted for #{date}"
+    else
+      redirect_to user_pairs_path(current_user), alert: "Nothing deleted"
+    end
   end
 
-  #
-  # def delete_all_pairs
-  #   if Pair.destroy_all
-  #     redirect_to user_pairs_path(current_user), notice: "All pairs removed"
-  #   end
-  # end
 
   private
 
