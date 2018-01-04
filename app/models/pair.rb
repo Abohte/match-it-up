@@ -8,7 +8,8 @@ class Pair < ApplicationRecord
     self.date > Date.today
   end
 
-
-
+  def pretty_print
+    self.students.map{|student| student.full_name}.join(" , ")
+  end
 
 end
