@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102113715) do
+ActiveRecord::Schema.define(version: 20180104095449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20180102113715) do
     t.datetime "updated_at", null: false
     t.index ["pair_id"], name: "index_matches_on_pair_id"
     t.index ["user_id"], name: "index_matches_on_user_id"
+  end
+
+  create_table "pairing_progresses", force: :cascade do |t|
+    t.integer "current_students_order", default: [], array: true
+    t.integer "current_iteration", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pairs", force: :cascade do |t|

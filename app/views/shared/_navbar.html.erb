@@ -25,7 +25,7 @@
               <li><%= link_to "Show Matches", user_pairs_path(current_user) %></li>
               <% if current_user.admin %>
                 <li><%= link_to "Show All Users", users_path %></li>
-                <li><%= link_to "New Match", new_user_pair_path(current_user) %></li>
+                <!-- <li><%#= link_to "New Match", new_user_pair_path(current_user) %></li> -->
               <% end %>
               <li><%= link_to "Edit User Details", edit_user_registration_path %></li>
               <li role="separator" class="divider"></li>

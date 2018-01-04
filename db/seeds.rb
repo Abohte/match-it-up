@@ -19,18 +19,19 @@ user4 = User.create!(email: "stu3@test.com", password: "123456", first_name: "Bo
 user5 = User.create!(email: "stu4@test.com", password: "123456", first_name: "Jackie", last_name: "Chan")
 user6 = FactoryBot.create :user, email: "stu5@test.com", password: "123456"
 user7 = FactoryBot.create :user, email: "stu6@test.com", password: "123456"
+user8 = FactoryBot.create :user, email: "stu7@test.com", password: "123456"
 
-pair1 = FactoryBot.create :pair
-pair2 = FactoryBot.create :pair
-pair3 = FactoryBot.create :pair
-pair4 = FactoryBot.create :pair, date: Date.tomorrow
-
-match1 = Match.create!(pair: pair1, user: user2)
-match2 = Match.create!(pair: pair1, user: user3)
-match3 = Match.create!(pair: pair2, user: user4)
-match4 = Match.create!(pair: pair2, user: user5)
-match5 = Match.create!(pair: pair3, user: user5)
-match6 = Match.create!(pair: pair3, user: user6)
-match7 = Match.create!(pair: pair3, user: user7)
-match8 = Match.create!(pair: pair4, user: user2)
-match9 = Match.create!(pair: pair4, user: user6)
+# pair1 = FactoryBot.create :pair
+# pair2 = FactoryBot.create :pair
+# pair3 = FactoryBot.create :pair
+# pair4 = FactoryBot.create :pair, date: Date.tomorrow
+#
+# match1 = Match.create!(pair: pair1, user: user2)
+# match2 = Match.create!(pair: pair1, user: user3)
+# match3 = Match.create!(pair: pair2, user: user4)
+# match4 = Match.create!(pair: pair2, user: user5)
+# match5 = Match.create!(pair: pair3, user: user5)
+# match6 = Match.create!(pair: pair3, user: user6)
+# match7 = Match.create!(pair: pair3, user: user7)
+# match8 = Match.create!(pair: pair4, user: user2)
+# match9 = Match.create!(pair: pair4, user: user6)

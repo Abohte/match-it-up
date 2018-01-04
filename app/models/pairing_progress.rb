@@ -1,0 +1,6 @@
+class PairingProgress < ApplicationRecord
+
+
+
+
+end
