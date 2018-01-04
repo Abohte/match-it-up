@@ -1,19 +1,27 @@
-<h4>Logged in as: <%= current_user.full_name %> <%= current_user.admin ? "(Admin)" : "(Student)" %></h4>
-<h3>These are <%= current_user.admin ? "all the" : "your" %> current matches.</h3>
-<br>
 <% if current_user.admin %>
-  <%= render "generate-pairs-form", pair: @pair %>
-  <%= render "delete-pairs-form", pair: @pair %>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= render "generate-pairs-form", pair: @pair %>
+    </div>
+    <div class="col-xs-6">
+      <%= render "delete-pairs-form", pair: @pair %>
+    </div>
+  </div>
   <br>
 <% end %>
 
-<% if @pairs.any? %>
-  <ul>
-  <% for pair in @pairs %>
 
-    <li>Day: <%= pair.date %> :
-      <%= pair.pretty_print %>
-    </li>
+<h4><%= current_user.admin ? "All" : "Your" %> current matches:</h4>
+<br>
+
+<% if @pairs.any? %>
+  <ul class="list-group">
+  <% pairs_per_day = @pairs.group_by { |pair| pair.date }.sort %>
+  <% pairs_per_day.each do |date, pairs| %>
+    <li class="list-group-item"><b><%= date %></b></li>
+    <% for pair in pairs %>
+      <li class="list-group-item"><%= pair.pretty_print %></li>
+    <% end %>
     <br>
   <% end %>
   </ul>

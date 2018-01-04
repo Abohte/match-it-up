@@ -1,7 +1,7 @@
 <%= form_for(:date, :url => pairs_generate_pairs_path, params: { date: :date }, method: :post) do |f| %>
   <%= render 'shared/validation_errors' %>
   <div class="row">
-    <div class="col-xs-3 form-group">
+    <div class="col-xs-7 form-group">
       <%= f.date_select :date, class: "form-control"%>
     </div>
     <div class="form-group">
