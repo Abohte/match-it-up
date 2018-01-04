@@ -9,12 +9,12 @@ class UsersController < ApplicationController
   def show
   end
 
-  # def generate_pairs
-  #
-  #   if User.generate_pairs
-  #     redirect_to user_pairs_path(current_user), notice: "New pairs generated"
-  #   end
-  # end
+  def toggle_admin
+    @user = User.find(params[:user_id])
+    @user.toggle!(:admin)
+    redirect_to users_path
+  end
+
 
   private
 
@@ -25,6 +25,4 @@ class UsersController < ApplicationController
   def set_users
     @users = User.all if current_user.admin
   end
-
-
 end

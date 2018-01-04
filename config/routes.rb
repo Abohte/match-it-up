@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :index] do
-    resources :pairs, only: [:index, :show, :create, :delete]
+
+    resources :pairs, only: [:index, :create]
+    post :toggle_admin
 
   end
 
