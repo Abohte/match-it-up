@@ -1,10 +1,11 @@
 <h4>Logged in as: <%= current_user.full_name %> <%= current_user.admin ? "(Admin)" : "(Student)" %></h4>
 <h3>These are <%= current_user.admin ? "all the" : "your" %> current matches.</h3>
 <br>
-
-<%= render "generate-pairs-form", pair: @pair %>
-<%= render "delete-pairs-form", pair: @pair %>
-<br>
+<% if current_user.admin %>
+  <%= render "generate-pairs-form", pair: @pair %>
+  <%= render "delete-pairs-form", pair: @pair %>
+  <br>
+<% end %>
 
 <% if @pairs.any? %>
   <ul>
