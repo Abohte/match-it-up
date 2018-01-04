@@ -12,4 +12,5 @@ class Pair < ApplicationRecord
     self.students.map{|student| student.full_name}.join(" , ")
   end
 
+
 end

@@ -35,21 +35,28 @@ class PairsController < ApplicationController
   end
 
   def generate_pairs
+    date = convert_date_params(date_params)
     # in make_pairs.rb
-    puts date_params
-    date = Date.new(date_params["date(1i)"].to_i, date_params["date(2i)"].to_i, date_params["date(3i)"].to_i)
     generate(date)
     redirect_to user_pairs_path(current_user), notice: "New pairs generated"
   end
 
   def delete
+
   end
 
-  def delete_all_pairs
-    if Pair.destroy_all
-      redirect_to user_pairs_path(current_user), notice: "All pairs removed"
+  def delete_on_date
+    date = convert_date_params(date_params)
+    pairs_to_delete = Pair.where(date: date)
+
+    if pairs_to_delete.any? && pairs_to_delete.destroy_all
+
+      redirect_to user_pairs_path(current_user), notice: "Pairs deleted for #{date}"
+    else
+      redirect_to user_pairs_path(current_user), alert: "Nothing deleted"
     end
   end
+
 
   private
 
@@ -67,6 +74,10 @@ class PairsController < ApplicationController
 
   def pair_params
     params.require(:pair).permit(:date)
+  end
+
+  def convert_date_params(date_params)
+    Date.new(date_params["date(1i)"].to_i, date_params["date(2i)"].to_i, date_params["date(3i)"].to_i)
   end
 
   def date_params
