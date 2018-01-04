@@ -48,20 +48,15 @@ class User < ApplicationRecord
 # Algorithm
 
 public
-  def self.set_group
-    @count = 0
-    @group = User.where(admin: false).ids.shuffle
-  end
 
-  def self.create_next_group_order(current_group_order)
-    @group = [current_group_order[0]] + current_group_order[1..-1].rotate(-1)
-  end
-
-  def self.generate_pairs(group)
-    if User.group_changed?(group) || User.all_pairs_made?(group, @count)
-      group = User.set_group
+  def self.generate_pairs
+    @group = User.set_group if @group.nil?
+    @count = 0 if @count.nil?
+    if User.group_changed?(@group) || User.all_pairs_made?(@group, @count)
+      @count = 0
+      @group = User.set_group
     end
-    current_group_order = group.dup
+    current_group_order = @group.dup
     @count += 1
     while current_group_order.length != 0 do
       if (current_group_order.length % 2 != 0)
@@ -76,15 +71,37 @@ public
     if !odd_user.nil?
       Match.create!(user_id: odd_user, pair: pair)
     end
-    User.create_next_group_order(group)
+    @group = User.create_next_group_order(@group)
   end
 
-  def self.all_pairs_made?(group, count)
-    group.length-1 == count
+  def self.set_group
+    User.where(admin: false).ids.shuffle
   end
 
-  def self.group_changed?(group)
+  def self.create_next_group_order(current_group_order)
+    [current_group_order[0]] + current_group_order[1..-1].rotate(-1)
+  end
+
+  def self.all_pairs_made?(current_group, count)
+    current_group.length-1 == count
+  end
+
+  def self.group_changed?(current_group)
     new_group = User.set_group
-    new_group.sort != group.sort
+    new_group.sort != current_group.sort
+  end
+
+  def self.puts_counter
+    puts @counter
+  end
+
+  def self.increases_counter
+    @counter += 1
+    puts @counter
+    puts_counter
+  end
+
+  def self.sets_counter
+    @counter = 0
   end
 end
