@@ -36,8 +36,8 @@ class PairsController < ApplicationController
 
   def generate_pairs
     # in make_pairs.rb
-    puts date_params
-    date = Date.new(date_params["date(1i)"].to_i, date_params["date(2i)"].to_i, date_params["date(3i)"].to_i)
+    # puts date_params
+    date = convert_date_params(date_params)
     generate(date)
     redirect_to user_pairs_path(current_user), notice: "New pairs generated"
   end
@@ -79,6 +79,10 @@ class PairsController < ApplicationController
 
   def pair_params
     params.require(:pair).permit(:date)
+  end
+
+  def convert_date_params(date_params)
+    Date.new(date_params["date(1i)"].to_i, date_params["date(2i)"].to_i, date_params["date(3i)"].to_i)
   end
 
   def date_params
