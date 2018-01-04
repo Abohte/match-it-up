@@ -9,6 +9,12 @@ class UsersController < ApplicationController
   def show
   end
 
+  def toggle_admin
+    @user = User.find(params[:user_id])
+    @user.toggle!(:admin)
+    redirect_to users_path
+  end
+
   private
 
   def validate_access
@@ -18,6 +24,4 @@ class UsersController < ApplicationController
   def set_users
     @users = User.all if current_user.admin
   end
-
-
 end
