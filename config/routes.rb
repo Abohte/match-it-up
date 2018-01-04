@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
 
   namespace :pairs do
-    delete :delete_all_pairs
+    # delete :delete_all_pairs
+    delete :delete_on_date
     post :generate_pairs
   end
 

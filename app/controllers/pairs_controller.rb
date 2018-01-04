@@ -40,13 +40,25 @@ class PairsController < ApplicationController
   end
 
   def delete
+
   end
 
-  def delete_all_pairs
-    if Pair.destroy_all
-      redirect_to user_pairs_path(current_user), notice: "All pairs removed"
-    end
+  def delete_on_date(date: Date.today)
+    return if !date.any?
+
+    pairs_to_delete = Pair.where(date: date).all
+    # if pairs_to_delete.destroy_all
+    puts pairs_to_delete
+      # redirect_to user_pairs_path(current_user), notice: "Pairs deleted for #{date}"
+    # end
   end
+
+  #
+  # def delete_all_pairs
+  #   if Pair.destroy_all
+  #     redirect_to user_pairs_path(current_user), notice: "All pairs removed"
+  #   end
+  # end
 
   private
 
