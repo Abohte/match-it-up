@@ -1,17 +1,9 @@
-require 'ruby/make_pairs'
-
 class User < ApplicationRecord
   after_initialize :set_default_admin_value
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  Warden::Manager.after_authentication do |user, auth, opts|
-    date = Date.today
-    if !Pair.where(date: date).any?
-     generate(date)
-    end
-  end
 
   has_many :matches, dependent: :destroy
   has_many :pairs, through: :matches
