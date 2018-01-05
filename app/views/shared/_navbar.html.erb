@@ -13,7 +13,7 @@
       <div class="navbar-header navbar-text">
       <% if user_signed_in? && !current_user.admin %>
         <% if current_user.pairs.any? %>
-          <p><%= current_user.pairs.last.date %> : <%= current_user.pairs.last.pretty_print %></p>
+          <p>Today's match: <%= current_user.pairs.last.pretty_print %></p>
         <% end %>
       <% end %>
       </div>

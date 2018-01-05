@@ -1,2 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.btn-secondary {
+  background-color: darkgrey;
+  color: white;
+}
+
+a.admin-button {
+  text-decoration: none;
+  color: white;
+}
