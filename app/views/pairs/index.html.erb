@@ -20,7 +20,7 @@
 <div id="main-list" class="list-group">
 
 <% if @pairs.any? %>
-  <% pairs_per_day = @pairs.order(date: :desc).group_by { |pair| pair.date } %>
+  <% pairs_per_day = @pairs.group_by { |pair| pair.date }.sort.reverse %>
   <% pairs_per_day.each do |date, pairs| %>
 
   <ul id="day-group" class="list-group">
