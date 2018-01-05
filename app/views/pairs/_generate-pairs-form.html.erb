@@ -1,11 +1,15 @@
-<%= form_for(:date, :url => pairs_generate_pairs_path, params: { date: :date }, method: :post) do |f| %>
+<%= form_for(:date, url: pairs_generate_pairs_path,
+              params: { date: :date },
+              html: { id: "generate-form"},
+              method: :post) do |f| %>
+
   <%= render 'shared/validation_errors' %>
   <div class="row">
-    <div class="col-xs-7 form-group">
+    <div class="col-xs-7 form-group", id="generate-date">
       <%= f.date_select :date, class: "form-control"%>
     </div>
     <div class="form-group">
-      <%= f.submit "Create pairs", class: "btn btn-primary"%>
+      <%= f.submit "Create pairs", id: "generate-button", class: "btn btn-primary"%>
     </div>
   </div>
 <% end %>

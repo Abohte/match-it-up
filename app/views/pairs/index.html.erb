@@ -13,16 +13,25 @@
 
 <h4><%= current_user.admin ? "All" : "Your" %> current matches:</h4>
 <br>
+<div id="message">
+
+</div>
+
+<div id="main-list" class="list-group">
 
 <% if @pairs.any? %>
-  <ul class="list-group">
   <% pairs_per_day = @pairs.group_by { |pair| pair.date }.sort %>
   <% pairs_per_day.each do |date, pairs| %>
-    <li class="list-group-item"><b><%= date %></b></li>
+
+  <ul id="day-group" class="list-group">
+    <li id="day-group-title-item" class="list-group-item"><b><%= date %></b></li>
     <% for pair in pairs %>
-      <li class="list-group-item"><%= pair.pretty_print %></li>
+      <li id="day-group-pair-item" class="list-group-item"><%= pair.pretty_print %></li>
     <% end %>
-    <br>
-  <% end %>
   </ul>
+
+  <% end %>
+  <br>
 <% end %>
+
+</div>

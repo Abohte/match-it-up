@@ -3,45 +3,54 @@ require 'date'
 
 class PairsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:index, :show, :new]
-  before_action :validate_access, only: [:new, :create, :delete, :delete_all_pairs]
+  before_action :authenticate_user!, only: [:index, :show, :new, :delete, :delete_on_date, :generate_pairs]
+  before_action :validate_access, only: [:new, :create, :delete, :delete_on_date, :generate_pairs]
   before_action :set_pairs, only: [:index, :show]
 
   def index
   end
 
   def new
-    @pair = Pair.new
-    @pair.matches.new
-    @pair.matches.new
-    @pair.matches.new
+    # @pair = Pair.new
+    # @pair.matches.new
+    # @pair.matches.new
+    # @pair.matches.new
   end
 
   def create
-    @pair = Pair.create(pair_params)
-    if @pair.save
-
-      match_params.each do |match|
-        puts "user_id: #{match[:user]}"
-        if match[:user] != ""
-          @pair.matches.create!( user_id: match[:user] )
-        end
-      end
-      redirect_to user_pairs_path(current_user), notice: "Pair created"
-    else
-      render :new
-    end
+    # @pair = Pair.create(pair_params)
+    # if @pair.save
+    #
+    #   match_params.each do |match|
+    #     puts "user_id: #{match[:user]}"
+    #     if match[:user] != ""
+    #       @pair.matches.create!( user_id: match[:user] )
+    #     end
+    #   end
+    #   redirect_to user_pairs_path(current_user), notice: "Pair created"
+    # else
+    #   render :new
+    # end
   end
 
   def generate_pairs
     date = convert_date_params(date_params)
     # in make_pairs.rb
-    generate(date)
-    redirect_to user_pairs_path(current_user), notice: "New pairs generated"
+    pairObjs = generate(date)
+    pairs = []
+
+    if pairObjs.any?
+      for pair in pairObjs
+        pairs << {date: pair.date, students: pair.pretty_print}
+      end
+    end
+    respond_to do |format|
+      format.html{ redirect_to user_pairs_path(current_user), notice: "New pairs generated" }
+      format.json{render json: pairs }
+    end
   end
 
   def delete
-
   end
 
   def delete_on_date
