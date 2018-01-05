@@ -40,7 +40,6 @@ def generate(date = Date.today)
   @group = create_next_group_order(@group)
 
   PairingProgress.destroy_all if PairingProgress.any?
-
   PairingProgress.create!(current_students_order: @group, current_iteration: @count)
 
   return totalpairs

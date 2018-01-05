@@ -13,10 +13,10 @@
         <% users.each do |user| %>
           <tr class="<%= user.admin? ? "admin" : "student" %> " data-id="<%= user.id %>">
             <td >
-              <button class="btn-grey submit" type="submit">
+              <button class="btn btn-secondary" type="submit">
                 <span id="user-<%= user.id %>">
                   <%= link_to (user.admin ? "remove admin" : "make admin"),
-                  user_toggle_admin_path(user.id), method: :post, params: { id: user.id } %>
+                  user_toggle_admin_path(user.id), class:"admin-button", method: :post, params: { id: user.id } %>
                 </span>
               </button>
             </td>
