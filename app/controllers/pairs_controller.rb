@@ -46,7 +46,7 @@ class PairsController < ApplicationController
     end
     respond_to do |format|
       format.html{ redirect_to user_pairs_path(current_user), notice: "New pairs generated" }
-      format.json{render json: pairs }
+      format.json{ render status: :created, json: pairs }
     end
   end
 
