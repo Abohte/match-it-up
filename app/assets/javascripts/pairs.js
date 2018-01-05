@@ -1,5 +1,3 @@
-
-
 function generatePairsOnDate(date) {
 
   $.ajax({
@@ -16,14 +14,14 @@ function generatePairsOnDate(date) {
 
       if (data.length > 0) {
         var dayGroup = $("<ul></ul>", {"class": "list-group", "id": "day-group"});
-        var titleItem = $("<li></li>", {"class": "list-group-item", "id": "day-group-title-item"});
+        var titleItem = $("<li></li>", {"class": "list-group-item list-group-item-success", "id": "day-group-title-item"});
 
         titleItem.html(`<b>${date}</b>`);
         dayGroup.append(titleItem);
 
         for (var pair of data) {
           var combi = pair.students;
-          var pairItem = $("<li></li>", {"class": "list-group-item", "id": "day-group-pair-item"});
+          var pairItem = $("<li></li>", {"class": "list-group-item list-group-item-success", "id": "day-group-pair-item"});
 
           pairItem.html(combi);
           dayGroup.append(pairItem);
@@ -35,7 +33,12 @@ function generatePairsOnDate(date) {
     })
 
     .fail(function(error) {
-      console.log(error); });
+      $("#generate-button").removeAttr('disabled');
+      console.log(error);
+      $('.alert').text("Pairs are already made for this day.");
+
+    });
+
 }
 
 
