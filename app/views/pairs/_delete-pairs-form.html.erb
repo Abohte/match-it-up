@@ -1,11 +1,15 @@
-<%= form_for(:date, :url => pairs_delete_on_date_path, params: { date: :date}, method: :delete) do |f| %>
+<%= form_for(:date, url: pairs_delete_on_date_path,
+              params: { date: :date},
+              html: { id: "delete-form"},
+              method: :delete) do |f| %>
+
   <%= render 'shared/validation_errors' %>
   <div class="row">
     <div class="col-xs-7 form-group">
       <%= f.date_select :date, class: "form-control"%>
     </div>
     <div class="form-group">
-      <%= f.submit "Delete pairs", class: "btn btn-primary"%>
+      <%= f.submit "Delete pairs",id: "delete-button", class: "btn btn-primary"%>
     </div>
   </div>
 <% end %>
