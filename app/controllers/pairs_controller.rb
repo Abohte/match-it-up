@@ -44,9 +44,15 @@ class PairsController < ApplicationController
         pairs << {date: pair.date, students: pair.pretty_print}
       end
     end
+
     respond_to do |format|
-      format.html{ redirect_to user_pairs_path(current_user), notice: "New pairs generated" }
-      format.json{ render status: :created, json: pairs }
+      if pairObjs.any?
+        format.html{ redirect_to user_pairs_path(current_user), notice: "New pairs generated" }
+        format.json{ render status: :created, json: pairs }
+      else
+      error_message = "Pairs are already made for this day. To make new pairs, first delete the pairs for the day in question."
+        format.json { render json: error_message, status: :unprocessable_entity }
+      end
     end
   end
 
