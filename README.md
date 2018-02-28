@@ -1,4 +1,4 @@
-# Codaisseurify
+# Match It Up
 
 Simple Rails app made together with [Sebastian van Hesteren](https://github.com/svanhesteren) during week 4 of the 9-week Codaisseur Academy.
 
@@ -24,9 +24,16 @@ The following User Stories were kept in mind:
 - I am matched to another Student, but only once each day.
 - I can see my matches for the past days, but not for future days.
 
-![Admin Matches Page](app/assets/images/AdminMatchPage.png)
-![Admin User Page](app/assets/images/AdminUserPage.png)
-![Student Matches Page](app/assets/images/StudentMatchPage.png)
+<kbd>
+  <img src="/app/assets/images/AdminMatchPage.png">
+</kbd>
+<kbd>
+  <img src="/app/assets/images/AdminUserPage.png">
+</kbd>
+<kbd>
+  <img src="/app/assets/images/StudentMatchPage.png">
+</kbd>
+
 
 ## Steps
 
